@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path")
 const executeCpp = require("./executeCPP");
 const executeJava = require("./executeJAVA");
+const executePy = require("./executePY");
 const generateFile = require("./generateFile");
 
 const app = express();
@@ -40,6 +41,8 @@ app.post("/run", async (req, res) => {
       output = await executeCpp(filename);
     } else if (language === "java") {
       output = await executeJava(filename);
+    } else if (language === "py") {
+        output = await executePy(filename);
     } else {
       fs.unlinkSync(path.join("code_files", filename), (err) => {
         if (err) {
