@@ -13,13 +13,14 @@ const executeCpp = (filename) => {
       `g++ ${filepath} -o ${outFilePath} && ${outFilePath}`,
       (error, stdout, stderr) => {
 
-        fs.unlinkSync(filepath, (err) => {
-            if (err) {reject({err})}
-        });
+        // TODO: Make another module which will remove these files
+        // fs.unlinkSync(filepath, (err) => {
+        //     if (err) {reject({err})}
+        // });
 
-        fs.unlinkSync(outFilePath, (err) => {
-            if (err) {reject({err})}
-        });
+        // fs.unlinkSync(outFilePath, (err) => {
+        //     if (err) {reject({err})}
+        // });
 
         if(error){
             reject({error, stderr});

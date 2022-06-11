@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const fs = require("fs");
 const path = require("path")
@@ -5,13 +6,16 @@ const executeCpp = require("./executeCPP");
 const executeJava = require("./executeJAVA");
 const executePy = require("./executePY");
 const generateFile = require("./generateFile");
+const cors = require('cors')
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = parseInt(process.env.PORT) || 5001;
+console.log(process.env.PORT)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -62,6 +66,6 @@ app.post("/run", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });

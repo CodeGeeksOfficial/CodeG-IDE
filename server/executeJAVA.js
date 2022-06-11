@@ -10,9 +10,9 @@ const executeJava = (filename) => {
       `java ${filepath}`,
       (error, stdout, stderr) => {
 
-        fs.unlinkSync(filepath, (err) => {
-            if (err) {reject({err})}
-        });
+        // fs.unlinkSync(filepath, (err) => {
+        //     if (err) {reject({err})}
+        // });
 
         if(error){
             reject({error, stderr});
