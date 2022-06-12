@@ -22,6 +22,7 @@ function App() {
   const [code, setCode] = useState(cppStarterCode);
   const [output, setOutput] = useState('');
   const [language, setLanguage] = useState('cpp');
+  const [jobStatus, setJobStatus] = useState('Pending');
 
   const changeCode = (language) =>{
     if(language === "cpp"){
@@ -43,7 +44,35 @@ function App() {
 
     try{
     const {data} = await axios.post("http://localhost:3002/run", apiReqData)
-    setOutput(data.output)}
+    setOutput(`Running your Code...
+    Status: ${jobStatus}`);
+
+    let intervalId;
+
+    intervalId = setInterval(async()=>{
+      const {data: dataRes} = await axios.get("http://localhost:3002/status", {params: {id: data.jobId}});
+      
+      const{success, job, error} = dataRes;
+      if(success){
+        const {status: jobStatus, output: jobOutput} = job;
+        if(jobStatus === "pending"){
+          return;
+        }
+        
+        setJobStatus("Success")
+        setOutput(`${jobOutput}
+        Status: ${jobStatus}`);
+        clearInterval(intervalId);
+
+      } else {
+        console.error(error);
+        clearInterval(intervalId);
+        setOutput(error);
+      }
+    
+    }, 1000)
+  }
+
     catch(err){
       const err_output_str = err.response.data.err.stderr;
       setOutput(err_output_str.slice(err_output_str.indexOf("error")));
