@@ -1,0 +1,41 @@
+.codeSpace {
+  display: flex;
+}
+
+.code-area {
+  height: 90vh;
+  background-color: #1e1e1e;
+  flex: 70%;
+  padding: 1%;
+  position: relative;
+}
+
+.code {
+  background-color: #1e1e1e;
+  color: white;
+  width: 96%;
+  height: 90%;
+  resize: none;
+  border: none;
+  padding: 2%;
+}
+
+.code:focus {
+  outline: none;
+}
+
+.print-area {
+  flex: 30%;
+}
+
+.play-button-icon {
+  position: absolute;
+  cursor: pointer;
+  bottom: 4%;
+  right: 2%;
+}
+
+.play-button-icon:hover {
+  border-radius: 100%;
+  box-shadow: 0px 0px 20px black;
+}
