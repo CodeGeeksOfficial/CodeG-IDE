@@ -32,7 +32,8 @@
   position: absolute;
   cursor: pointer;
   bottom: 4%;
-  right: 2%;
+  right: 1%;
+  width: 7%;
 }
 
 .play-button-icon:hover {

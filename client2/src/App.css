@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url("http://fonts.cdnfonts.com/css/gagalin");
 
 *{
   font-family: "Roboto", sans-serif;
   overflow: hidden;
+}
+
+.logo-text{
+  font-family: "Gagalin", sans-serif;
+}
+
+textarea{
+  overflow: scroll;
 }

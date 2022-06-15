@@ -11,7 +11,7 @@ function CodeSpace(){
         <img className="play-button-icon" src="/icons/play-button-icon.png" alt="play-button" />
       </div>
       <div className="print-area">
-        <Space heading="Enter Input" />
+        <Space heading="Enter Input" flag="true" />
         <Space heading="Output" />
       </div>
     </div>

@@ -14,17 +14,17 @@
 }
 
 .logo-img {
-  width: 15%;
+  width: 20%;
   cursor: pointer;
 }
 
 .logo-text {
   justify-content: center;
   text-align: center;
-  font-weight: 700;
-  font-size: 2rem;
+  font-weight: 400;
+  font-size: 2.5rem;
   color: #00ffc3;
-  padding-left: 2%;
+  padding-left: 3%;
 }
 
 .header-middle {
