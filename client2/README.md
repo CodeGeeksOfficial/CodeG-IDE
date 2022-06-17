@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## CodeMirror documentation for referrence 
+In this project, CodeMirror editor is used [MonacoEditor](https://microsoft.github.io/monaco-editor/).
+Module : @monaco-editor/react is used [@uiw/react-codemirror](https://www.npmjs.com/package/@monaco-editor/react)
 ## Available Scripts
 
 In the project directory, you can run:

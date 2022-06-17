@@ -2,7 +2,6 @@
   background-color: #2f3035;
   display: flex;
   justify-content: space-between;
-  padding: 0.5% 2%; /*padding (top-bottom) (left-right)*/
   align-items: center;
   border-bottom: 1px solid gray;
 }
@@ -54,7 +53,7 @@
 }
 
 .file-name {
-  background-color: #303136;
+  background-color: transparent;
   color: white;
   border: none;
   padding: 4% 6%;

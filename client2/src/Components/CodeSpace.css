@@ -1,12 +1,12 @@
-.codeSpace {
+.code-space {
   display: flex;
 }
 
-.code-area {
-  height: 90vh;
+.code-editor {
   background-color: #1e1e1e;
-  flex: 70%;
-  padding: 1%;
+  display: flex;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -25,7 +25,9 @@
 }
 
 .print-area {
-  flex: 30%;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
 }
 
 .play-button-icon {
