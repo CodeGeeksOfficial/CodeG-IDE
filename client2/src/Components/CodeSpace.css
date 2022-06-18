@@ -30,15 +30,16 @@
   width: 30%;
 }
 
-.play-button-icon {
+.play-button-icon svg{
+  fill:rgba(27, 184, 145, 0.8);
   position: absolute;
-  cursor: pointer;
   bottom: 4%;
-  right: 1%;
-  width: 7%;
+  right: 4%;
+  cursor: pointer;
+  transition: fill 0.2s ease-in-out;
 }
 
-.play-button-icon:hover {
-  border-radius: 100%;
-  box-shadow: 0px 0px 20px black;
+.play-button-icon svg:hover{
+  fill: rgb(87, 252, 211);
+  stroke:10px;
 }

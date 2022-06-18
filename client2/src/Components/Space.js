@@ -1,27 +1,19 @@
-import React from 'react';
 import './Space.css';
 
-function Space(props){
-  // return(
-  //   <div className="space">
-  //     <span className="heading">{props.heading}</span>
-  //   </div>
-    
-  // )
-  if(props.flag == "true"){
+export default function Space(props){
+  if(props.flag === "true"){
     return(
       <div className="space">
-    <span className="heading">{props.heading}</span>
-    <textarea className="space-input"></textarea>
-    </div>
+      <span className="heading">{props.heading}</span>
+      <textarea className="space-input"></textarea>
+      </div>
     )
   }else{
     return(
       <div className="space">
-    <span className="heading">{props.heading}</span>
-    </div>
+      <span className="heading">{props.heading}</span>
+      {/*TODO <div className="space-output"></div> */}
+      </div>
     )
     }
 }
-
-export default Space;
