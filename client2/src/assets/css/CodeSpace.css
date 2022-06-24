@@ -1,45 +1,36 @@
 .code-space {
+  /* border: 1px solid gray; */
+  box-shadow: 0px 0px 1em 1px rgb(0, 0, 0);
   display: flex;
+  width: 90%;
+  height:91.7vh;
 }
 
 .code-editor {
   background-color: #1e1e1e;
   display: flex;
-  width: 100%;
+  width: 70%;
   height: 100%;
   position: relative;
 }
-
-.code {
-  background-color: #1e1e1e;
-  color: white;
-  width: 96%;
-  height: 90%;
-  resize: none;
-  border: none;
-  padding: 2%;
-}
-
-.code:focus {
-  outline: none;
-}
-
+  
 .print-area {
   display: flex;
   flex-direction: column;
   width: 30%;
+  height: 91vh;
 }
-
+  
 .play-button-icon svg{
-  fill:rgba(27, 184, 145, 0.8);
+  fill:rgba(10, 200, 153, 0.6);
   position: absolute;
-  bottom: 4%;
+  bottom: 3%;
   right: 4%;
   cursor: pointer;
   transition: fill 0.2s ease-in-out;
 }
-
+  
 .play-button-icon svg:hover{
-  fill: rgb(87, 252, 211);
+  fill: rgb(10, 255, 195);
   stroke:10px;
 }
