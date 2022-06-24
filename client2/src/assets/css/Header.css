@@ -47,7 +47,7 @@
     height: 2px;
     width: 4.2em;
     background-color: rgb(79,79,79,0.5);
-    top: 100%;
+    top: 4.2em;
     border-radius: 100%;
     box-shadow: 1px ;
 }
@@ -88,7 +88,7 @@
     min-width: 10em;
     height: 2em;
     border: 2px solid #00ffc2;
-    border-radius: 12px;
+    border-radius: 25px;
 }
 
 .file-name {
@@ -103,6 +103,7 @@
 }
   
 .file-name-button {
+    user-select: none;
     width: 20%;
     cursor: pointer;
     background: none;
@@ -110,6 +111,7 @@
     color: white;
 }
 .user-info div{
+    user-select: none;
     transition: all 0.3s ease-in-out;
     color: rgb(255, 255, 255);
 }
