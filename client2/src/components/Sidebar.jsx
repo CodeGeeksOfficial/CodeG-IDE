@@ -1,12 +1,12 @@
 import React from 'react'
 import 'assets/css/Sidebar.css'
-// import 
-export default function Header() {
+// import iconList from 'assets/data/Icons'
+// import SidebarIcon from 'components/SidebarIcon'
+
+export default function Sidebar() {
   return (
     <div className="sidebar">
-      <div className="sidebar-icon">
-
-      </div>
+    {/* {iconList.map((icon)=> <SidebarIcon icon={icon} key={icon.id}/>)} */}
     </div>
   )
 }

@@ -16,19 +16,18 @@
     display: flex;
     align-items: center;
     height: 10%;
-    padding: 2% 5%;
+    padding: 3% 5%;
   }
-  .space-input,.space-output{
+  .input-textarea,.output-textarea{
     height: 90%;
-    padding: 0% 5%;
-  }
-  .space-input {
-    height: 38vh;
+    padding: 5%;
     background-color: rgb(30,30,30);
-    color: white;
-    resize: none;
     border: none;
+    resize: none;
+    color: white;
+    overflow: scroll;
   }
-  .space-input:focus{
+  .space > textarea:focus{
     outline: none;
   }
+  
