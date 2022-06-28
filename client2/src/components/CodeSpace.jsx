@@ -1,4 +1,3 @@
-// POST and GET requests are made from this component
 import { React, useState ,useRef, useMemo } from 'react';
 import 'assets/css/CodeSpace.css';
 import InputSpace from './InputSpace';
@@ -7,15 +6,10 @@ import Editor from "@monaco-editor/react";
 import {AiFillPlayCircle} from 'react-icons/ai';
 import {useEditorStore,languages} from 'store/EditorStore'
 
-async function dummyCall(isWorking) {
-  return new Promise((resolve, reject) => {
-    isWorking ? setTimeout(()=>resolve("Success"),2000) : setTimeout(()=>reject("Reject"),2000);
-  })
-}
-
-function CodeSpace(props){
+function CodeSpace(){
   const [isLoading, setIsLoading] = useState(false);
   const curLang = useEditorStore(store => store.curLang);
+  //If an invalid language is mentioned, then a blank screen will appear !
   const setState = useEditorStore(store => store.setState);
 
   const selectedLang = useMemo(()=>{
@@ -27,9 +21,16 @@ function CodeSpace(props){
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor; 
   }
-  // console.log("lol")
+
   function getValue(){
     return editorRef.current.getValue();
+  }
+
+  // This is a dummyCall to server
+  async function dummyCall(isWorking) {
+    return new Promise((resolve, reject) => {
+      isWorking ? setTimeout(()=>resolve("Success"),2000) : setTimeout(()=>reject("Reject"),2000);
+    })
   }
 
   const handleRun = async () => {
@@ -43,7 +44,7 @@ function CodeSpace(props){
       let outputStr = await dummyCall(true);
       setState('output', outputStr)
     } catch (error) {
-      setState('output',"Beta koi dikkat hai ")
+      setState('output',"Beta koi dikkat hai server mein ...")
     } finally{
       console.log("Request to dummy server was made")
       setIsLoading(false);
@@ -57,8 +58,7 @@ function CodeSpace(props){
           height="100%"
           width="100%"
           theme='vs-dark'
-          defaultLanguage={selectedLang.name}
-          defaultValue={selectedLang.BoilerPlate}
+          loading="<Loading/>"
           language={selectedLang.name}
           value={selectedLang.BoilerPlate}
           onMount={handleEditorDidMount}

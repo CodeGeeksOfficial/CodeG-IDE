@@ -17,7 +17,7 @@ import {useEditorStore, languages} from 'store/EditorStore'
 //     }
 // ]
 
-export default function Dropdown(props) {
+export default function Dropdown() {
     const curLang = useEditorStore(store=> store.curLang)
     const setState = useEditorStore(store => store.setState)
 

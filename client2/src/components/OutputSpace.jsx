@@ -1,5 +1,4 @@
 import React from 'react'
-// import { useContext } from 'react'
 import {useEditorStore} from 'store/EditorStore'
 
 export default function OutputSpace({isLoading}) {
