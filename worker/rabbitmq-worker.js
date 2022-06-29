@@ -20,8 +20,11 @@ const startQueueService = async () => {
   channel.consume("jobs", async (data) => {
     const job = JSON.parse(data.content.toString());
     await setKey(job.folder_name, "Processing");
-    await processJob(job);
-
+    try {
+      await processJob(job);
+    } catch (err) {
+      console.log(`Error while Processing Job: ${err}`);
+    }
     channel.ack(data);
   });
 };

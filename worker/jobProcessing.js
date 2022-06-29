@@ -3,10 +3,19 @@ const { executePy } = require("./utils/executePy");
 const { executeJava } = require("./utils/executeJava");
 const { executeCpp } = require("./utils/executeCpp");
 const fs = require("fs");
-const { setKey, getKey, delKey } = require("./redis-worker.js");
+const { setKey } = require("./redis-worker.js");
 
 async function processJob(job) {
-  createFile(job);
+  console.log(`Processing ${job.folder_name}`);
+  try {
+    createFile(job);
+  } catch (err) {
+    setKey(job.folder_name, `{"stderr":"Internal Server Error","stdout":""}`);
+    console.log(
+      `Error while creating files, JobId: ${job.folder_name}, Error: ${err}`
+    );
+  }
+
   let output;
   try {
     if (job.language === "py") {
@@ -24,7 +33,6 @@ async function processJob(job) {
     }
   } finally {
     output = JSON.stringify(output);
-    console.log(output);
     setKey(job.folder_name, output);
     fs.writeFileSync(`./temp/${job.folder_name}/output.txt`, output);
   }

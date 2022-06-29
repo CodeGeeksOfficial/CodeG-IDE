@@ -29,9 +29,4 @@ const delKey = async (key) => {
   await redisClient.del(key);
 };
 
-// redisClient.on("error", (err) => {
-//   redisClient.disconnect();
-//   console.log("Error " + err);
-// });
-
 module.exports = { setKey, getKey, delKey };

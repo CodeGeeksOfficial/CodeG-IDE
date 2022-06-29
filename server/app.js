@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // *** Run endpoint for running the code *** //
-app.post("/run", (req, res) => {
+app.post("/run", async (req, res) => {
   const folder_name = randomBytes(20).toString("hex"); // Random Folder name
   try {
     setKey(folder_name, "Queued");
@@ -43,7 +43,7 @@ app.post("/run", (req, res) => {
 
     // If timeout is not received, set it to 15 sec
     if (data.timeout === undefined) {
-      data.timeout = 15000;
+      data.timeout = 10000;
     }
 
     // *** Prepare data and Push in Queue *** //
@@ -62,10 +62,15 @@ app.post("/run", (req, res) => {
 app.get("/results/:id", async (req, res) => {
   try {
     let key = req.params.id;
+
+    if (key === undefined) {
+      return res.status(400).send({ status: "Key not received" });
+    }
+
     let status = await getKey(key);
 
     if (status == "null") {
-      return res.status(400).send({ status: "Job doesn't exists" });
+      return res.status(404).send({ status: "Job doesn't exists" });
     } else if (status == "Queued") {
       return res.status(202).send({ status: "Queued" });
     } else if (status == "Processing") {
