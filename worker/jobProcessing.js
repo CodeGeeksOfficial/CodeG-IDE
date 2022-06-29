@@ -29,7 +29,14 @@ async function processJob(job) {
     if (err.stderr) {
       output = err;
     } else {
-      console.log(`Error while file execution: ${err}`);
+      if (err.error.signal == "SIGTERM") {
+        output = {
+          stderr: "Your code took too long to execute.!!",
+          stdout: "",
+        };
+      } else {
+        console.log(`Error while file execution: ${err}`);
+      }
     }
   } finally {
     output = JSON.stringify(output);
