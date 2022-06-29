@@ -2,7 +2,7 @@ import 'assets/css/IOspace.css';
 import { useEffect,useRef } from 'react';
 import { useEditorStore } from 'store/EditorStore';
 
-export default function InputSpace(props){
+export default function InputSpace(){
   const iField = useRef()
   const input = useEditorStore(store => store.input);
   const setState = useEditorStore(store => store.setState);

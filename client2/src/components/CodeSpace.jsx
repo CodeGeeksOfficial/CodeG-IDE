@@ -32,7 +32,7 @@ function CodeSpace(){
     const apiReqData = {
       language: lang.ext,
       code:getValue(),
-      input:""
+      input:useEditorStore.getState().input
     }
     // function abortProtocol(intervalId,time){
     //   console.log("inside protocol")
@@ -101,8 +101,8 @@ function CodeSpace(){
         </div>
       </div>
       <div className="print-area">
-        <InputSpace heading="Input"/>
-        <OutputSpace heading="Output" isLoading={isLoading}/>
+        <InputSpace/>
+        <OutputSpace isLoading={isLoading}/>
       </div>
     </div>
   )
