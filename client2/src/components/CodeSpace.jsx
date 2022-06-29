@@ -5,6 +5,7 @@ import OutputSpace from './OutputSpace'
 import Editor from "@monaco-editor/react";
 import {AiFillPlayCircle} from 'react-icons/ai';
 import {useEditorStore,languages} from 'store/EditorStore'
+import axios from 'axios';
 
 function CodeSpace(){
   const [isLoading, setIsLoading] = useState(false);
@@ -26,28 +27,58 @@ function CodeSpace(){
     return editorRef.current.getValue();
   }
 
-  // This is a dummyCall to server
-  async function dummyCall(isWorking) {
-    return new Promise((resolve, reject) => {
-      isWorking ? setTimeout(()=>resolve("Success"),2000) : setTimeout(()=>reject("Reject"),2000);
-    })
-  }
-
   const handleRun = async () => {
     let lang = selectedLang
+    const apiReqData = {
+      language: lang.ext,
+      code:getValue(),
+      input:""
+    }
+    // function abortProtocol(intervalId,time){
+    //   console.log("inside protocol")
+    //   console.log("isLoading: " , isLoading)
+
+    //   setTimeout(()=>{
+    //     if(isLoading===true){
+    //       console.log("Request timeout")
+    //       clearInterval(intervalId)
+    //       setState('output',"Request timeout")
+    //       setIsLoading(false)
+    //     }else
+    //       console.log("isLoading: " , isLoading)
+    //   },time)
+    // }
     console.log("Submitted this code in " + lang.name + " : ");
     console.log(getValue());
     console.log("input", useEditorStore.getState().input)
     setState('code', getValue())
     try {
       setIsLoading(true);
-      let outputStr = await dummyCall(true);
-      setState('output', outputStr)
+      const {data : resultId} = await axios.post("http://localhost:6500/run", apiReqData)
+      
+      console.log(resultId);
+
+      let intervalId = setInterval(async () => {
+        let {data: dataRes} = await axios.get("http://localhost:6500/results/" + resultId)
+        let {status , jobOutput} = dataRes
+        // console.log(intervalId)
+        console.log(dataRes)
+        // abortProtocol(intervalId,5000);
+        if(status === "Done"){
+          clearInterval(intervalId)
+          // console.log(jobOutput.stdout)
+          setIsLoading(false)
+          if(jobOutput.stderr!=="")
+            setState('output',jobOutput.stderr)
+          else
+            setState('output',jobOutput.stdout)
+        }else{
+          console.log("Current status: " + status)
+        }
+      }, 1000)
     } catch (error) {
+      setIsLoading(false)
       setState('output',"Beta koi dikkat hai server mein ...")
-    } finally{
-      console.log("Request to dummy server was made")
-      setIsLoading(false);
     }
   }
 
