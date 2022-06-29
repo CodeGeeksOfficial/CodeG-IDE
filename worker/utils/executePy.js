@@ -6,11 +6,11 @@ const executePy = (job) => {
     exec(
       `python ./temp/${job.folder_name}/Main.py < ./temp/${job.folder_name}/input.txt`,
       (error, stdout, stderr) => {
-        if (error) {
-          reject(error);
-        }
         if (stderr) {
-          resolve({ stderr, stdout });
+          reject({ stderr, stdout });
+        }
+        if (error) {
+          reject({ error });
         }
         resolve({ stderr, stdout });
       }

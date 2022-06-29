@@ -6,11 +6,11 @@ const executeJava = (job) => {
     exec(
       `java ./temp/${job.folder_name}/Main.java < ./temp/${job.folder_name}/input.txt`,
       (error, stdout, stderr) => {
-        if (error) {
-          reject(error);
-        }
         if (stderr) {
-          resolve({ stderr, stdout });
+          reject({ stderr, stdout });
+        }
+        if (error) {
+          reject({ error });
         }
         resolve({ stderr, stdout });
       }
