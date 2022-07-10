@@ -1,15 +1,11 @@
-version: "1.0"
+version: "2.3"
 services:
   rabbitmq:
     image: "rabbitmq"
     restart: always
-    ports:
-      - "5672:5672"
   redis-server:
     image: "redis"
     restart: always
-    ports:
-      - "6379:6379"
   server:
     build: ./server
     restart: always
@@ -21,3 +17,8 @@ services:
     pids_limit: 60
     cpus: 1
     mem_limit: 150M
+  client:
+    build: ./client
+    restart: always
+    ports:
+      - "3000:3000"

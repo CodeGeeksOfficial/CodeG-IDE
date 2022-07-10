@@ -4,7 +4,7 @@ const { exec } = require("child_process"); //TODO: use spawn
 const executeCpp = (job) => {
   return new Promise((resolve, reject) => {
     exec(
-      `g++ ./temp/${job.folder_name}/Main.cpp -o ./temp/${job.folder_name}/a && "./temp/${job.folder_name}/a.exe" < ./temp/${job.folder_name}/input.txt`,
+      `g++ ./temp/${job.folder_name}/Main.cpp -o ./temp/${job.folder_name}/a && "./temp/${job.folder_name}/a" < ./temp/${job.folder_name}/input.txt`,
       { timeout: job.timeout },
       (error, stdout, stderr) => {
         if (stderr) {

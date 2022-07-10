@@ -2,6 +2,7 @@ const { createFile } = require("./utils/generateFile");
 const { executePy } = require("./utils/executePy");
 const { executeJava } = require("./utils/executeJava");
 const { executeCpp } = require("./utils/executeCpp");
+const { executeJs } = require("./utils/executeJs");
 const fs = require("fs");
 const { setKey } = require("./redis-worker.js");
 
@@ -31,6 +32,8 @@ async function processJob(job) {
       output = await executeCpp(job);
     } else if (job.language === "java") {
       output = await executeJava(job);
+    } else if (job.language === "js") {
+      output = await executeJs(job);
     } else {
       output = {
         stderr: "Language is not supported",

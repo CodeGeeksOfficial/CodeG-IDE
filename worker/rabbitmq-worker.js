@@ -1,10 +1,13 @@
 const amqp = require("amqplib");
 const { processJob } = require("./jobProcessing.js");
-const { setKey, getKey, delKey } = require("./redis-worker.js");
+const { setKey } = require("./redis-worker.js");
 // *** Configure & Establish Connection *** //
+
+let channel;
+
 const startQueueService = async () => {
   try {
-    const amqpServerIP = "amqp://localhost:5672";
+    const amqpServerIP = "amqp://rabbitmq:5672";
     const connection = await amqp.connect(amqpServerIP);
     channel = await connection.createChannel();
     await channel.assertQueue("jobs");
@@ -14,6 +17,12 @@ const startQueueService = async () => {
     console.log(
       `Error Connecting to Queue Service on Worker Node, Error: ${err}`
     );
+  }
+};
+
+const startProcessing = async () => {
+  while (channel === undefined) {
+    await startQueueService();
   }
 
   // *** Start Processing Jobs *** //
@@ -29,4 +38,4 @@ const startQueueService = async () => {
   });
 };
 
-module.exports = { startQueueService };
+module.exports = { startQueueService, startProcessing };

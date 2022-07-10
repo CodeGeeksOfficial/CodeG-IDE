@@ -4,7 +4,7 @@ let channel;
 
 // *** Configure the connection *** //
 const connectQueue = async () => {
-  const amqpServerIP = "amqp://localhost:5672";
+  const amqpServerIP = "amqp://rabbitmq:5672";
   const connection = await amqp.connect(amqpServerIP);
   channel = await connection.createChannel();
   channel.assertQueue("jobs");

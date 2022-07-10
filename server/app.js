@@ -4,6 +4,8 @@ const { sendInQueue } = require("./rabbitmq-server.js"); // Import function to p
 const { setKey, getKey, delKey } = require("./redis-server.js");
 const cors = require("cors");
 
+const LANGUAGES = ["cpp", "java", "py", "js"];
+
 // *** Express App Configuration *** //
 const app = express();
 const PORT = 6500;
@@ -29,6 +31,10 @@ app.post("/run", async (req, res) => {
     // If language is not received, return 400 BAD Request
     if (data.language === undefined) {
       return res.status(400).send({ error: "Language Not Received" });
+    }
+
+    if (!LANGUAGES.includes(data.language)) {
+      return res.status(400).send({ error: "Language Not Supported !" });
     }
 
     // If code is not received, return 400 BAD Request
@@ -60,6 +66,7 @@ app.post("/run", async (req, res) => {
 });
 
 app.get("/results/:id", async (req, res) => {
+  let status;
   try {
     let key = req.params.id;
 
@@ -67,9 +74,9 @@ app.get("/results/:id", async (req, res) => {
       return res.status(400).send({ status: "Key not received" });
     }
 
-    let status = await getKey(key);
+    status = await getKey(key);
 
-    if (status == "null") {
+    if (status == "null" || status === undefined) {
       return res.status(404).send({ status: "Job doesn't exists" });
     } else if (status == "Queued") {
       return res.status(202).send({ status: "Queued" });
@@ -80,7 +87,9 @@ app.get("/results/:id", async (req, res) => {
       return res.status(202).send({ status: "Done", jobOutput });
     }
   } catch (err) {
-    return res.status(500).send({ error: `Internal Server Error: ${err}` });
+    return res
+      .status(500)
+      .send({ error: `Internal Server Error: ${err}, JobStatus : ${status}` });
   }
 });
 
