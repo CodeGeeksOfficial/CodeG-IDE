@@ -8,7 +8,7 @@ RUN apt-get install curl -y && curl -sL https://deb.nodesource.com/setup_16.x | 
 COPY . .
 RUN mkdir temp
 RUN chmod 700  /
-RUN chmod 777 -R temp/
+RUN chmod 755 -R temp/
 RUN adduser --disabled-password --gecos "" executionuser
 RUN npm install
 
