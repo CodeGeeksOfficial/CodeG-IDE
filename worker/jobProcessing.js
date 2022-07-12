@@ -4,7 +4,7 @@ const { executeJava } = require("./utils/executeJava");
 const { executeCpp } = require("./utils/executeCpp");
 const { executeJs } = require("./utils/executeJs");
 const fs = require("fs");
-const { setKey } = require("./redis-worker.js");
+const { setEx } = require("./redis-worker.js");
 
 async function processJob(job) {
   console.log(`Processing ${job.folder_name}`);
@@ -13,7 +13,7 @@ async function processJob(job) {
   try {
     createFile(job);
   } catch (err) {
-    setKey(job.folder_name, `{"stderr":"Internal Server Error","stdout":""}`);
+    setEx(job.folder_name, `{"stderr":"Internal Server Error","stdout":""}`);
     console.log(
       `Error while creating files, JobId: ${job.folder_name}, Error: ${err}`
     );
@@ -70,7 +70,7 @@ async function processJob(job) {
     }
   } finally {
     output = JSON.stringify(output);
-    setKey(job.folder_name, output);
+    setEx(job.folder_name, output);
     fs.writeFileSync(`./temp/${job.folder_name}/output.txt`, output);
   }
 }

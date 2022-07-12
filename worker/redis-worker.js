@@ -20,6 +20,15 @@ const setKey = async (key, value) => {
   await redisClient.set(key, value);
 };
 
+const setEx = async (key, value) => {
+  if (redisClient === undefined) {
+    await connect();
+  }
+  await redisClient.set(key, value, {
+    EX: 600,
+  });
+};
+
 const getKey = async (key) => {
   if (redisClient === undefined) {
     await connect();
@@ -35,4 +44,4 @@ const delKey = async (key) => {
   await redisClient.del(key);
 };
 
-module.exports = { setKey, getKey, delKey };
+module.exports = { setKey, setEx, getKey, delKey };

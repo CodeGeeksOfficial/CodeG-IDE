@@ -16,7 +16,7 @@ services:
     restart: always
     pids_limit: 60
     cpus: 1
-    mem_limit: 150M
+    mem_limit: 400M
   client:
     build: ./client
     restart: always

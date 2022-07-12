@@ -4,7 +4,7 @@ const { exec } = require("child_process"); //TODO: use spawn
 const executeJava = (job) => {
   return new Promise((resolve, reject) => {
     exec(
-      `java ./temp/${job.folder_name}/Main.java < ./temp/${job.folder_name}/input.txt`,
+      `sudo -u executionuser java ./temp/${job.folder_name}/Main.java < ./temp/${job.folder_name}/input.txt`,
       { timeout: job.timeout },
       (error, stdout, stderr) => {
         if (stderr) {

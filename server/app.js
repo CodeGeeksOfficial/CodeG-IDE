@@ -49,7 +49,7 @@ app.post("/run", async (req, res) => {
 
     // If timeout is not received, set it to 15 sec
     if (data.timeout === undefined) {
-      data.timeout = 10000;
+      data.timeout = 15000;
     }
 
     // *** Prepare data and Push in Queue *** //

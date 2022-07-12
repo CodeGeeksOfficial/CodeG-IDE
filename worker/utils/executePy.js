@@ -4,7 +4,7 @@ const { exec } = require("child_process"); //TODO: use spawn
 const executePy = (job) => {
   return new Promise((resolve, reject) => {
     exec(
-      `python3 ./temp/${job.folder_name}/Main.py < ./temp/${job.folder_name}/input.txt`,
+      `sudo -u executionuser python3 ./temp/${job.folder_name}/Main.py < ./temp/${job.folder_name}/input.txt`,
       { timeout: job.timeout },
       (error, stdout, stderr) => {
         if (stderr) {
