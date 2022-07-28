@@ -1,14 +1,9 @@
 const lang = [
   {
-    ext: "py",
-    name: "python",
-    BoilerPlate: `print("Hey Codie!")`,
-  },
-  {
     ext: "cpp",
-    name: "cpp",
-    //TODO add support for bits/stdc++.h header file
-    BoilerPlate: `#include<iostream>
+    editor_lang: "cpp",
+    display_name:"C++",
+    BoilerPlate: `#include<bits/stdc++.h>
 using namespace std;
 
 int main()
@@ -18,8 +13,15 @@ int main()
 }`,
   },
   {
+    ext: "py",
+    editor_lang: "python",
+    display_name:"Python",
+    BoilerPlate: `print("Hey Codie!")`,
+  },
+  {
     ext: "java",
-    name: "java",
+    editor_lang: "java",
+    display_name:"Java",
     BoilerPlate: `public class Main {
     public static void main(String args[]) {
         System.out.println("Hey Codie!");
@@ -28,7 +30,8 @@ int main()
   },
   {
     ext: "js",
-    name: "javascript",
+    editor_lang: "javascript",
+    display_name:"Node.js",
     BoilerPlate: `/* 
     Use INPUT variable to get stdin.
     Try console.log(INPUT);
