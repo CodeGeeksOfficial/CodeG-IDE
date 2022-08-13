@@ -1,6 +1,32 @@
 .sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     /* background-color: #17141d; */
     background-color: rgb(32,34,37);
-    width: 4.5em;
+    /* width: 15em; */
     height: 100%;
+}
+.sidebar-icon-container{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(48,49,54);
+    border-radius:50%;
+    /* align-items: center; */
+}
+.sidebar-icon:hover{
+    /* transform: scale(1.1); */
+    background-color: #00ffc3;
+    border-radius: 35%;
+    fill: rgb(32,34,37);
+    /* fill: #00ffc3; */
+}
+.sidebar-icon{
+    border-radius:60%;
+    fill: white;
+    transition: all 0.2s ease-in-out;
+    background-color: transparent;
 }

@@ -7,11 +7,11 @@ function App() {
   
   return (
     <div className="App">
-      <Header/>
       <div className="Space">
         <Sidebar/>
         <CodeSpace/>
       </div>
+      <Header/>
     </div>
   );
 }

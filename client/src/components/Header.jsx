@@ -5,20 +5,17 @@ export default function Header() {
   return (
     <div className="header-container">
       <div className="header-sub-container">
-        <div className="codeg-logo"><img src="/icons/CodeG-Logo.png" alt="CodeG Logo" /></div>
+        <div className="codeg-logo"><img src="assets/icons/CodeG-Logo.png" alt="CodeG Logo" /></div>
+        <span className="logo-text">CODE<span>G</span></span>
         <div className="header-content">
-          <span className="logo-text">CODE<span>G</span></span>
-          <Dropdown/>
-          <form className="file-name-textbox">
-            <input className="file-name" type="text" placeholder="Untitled" />
-            <button className="file-name-button">Save</button>
-          </form>
+          {/* <span className="logo-text">CODE<span>G</span></span> */}
+          {/* <Dropdown onRequestClose={()=>console.log("Clicked outside dropdown")}/> */}
           <div className="user-info">
-            <div className="sign-in">
+            {/* <div className="sign-in">
               Sign In
-            </div>
+            </div> */}
             <div className="sign-up">
-              Sign Up
+              Sign In
             </div>
           </div>
         </div>
