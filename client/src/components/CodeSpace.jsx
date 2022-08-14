@@ -8,8 +8,6 @@ import {useEditorStore,languages} from 'store/EditorStore'
 import axios from 'axios';
 import Dropdown from 'components/Dropdown'
 
-// jsx ka variable 
-const jsx = <div className="opened-files">Hello baby </div>;
 function CodeSpace(){
   const [isLoading, setIsLoading] = useState(false);
   // console.log(isLoading)
@@ -97,6 +95,7 @@ function CodeSpace(){
         <div className="file-options">
           <Dropdown onRequestClose={()=>console.log("Clicked outside dropdown")}/>
         </div>
+        {/* TODO: Reset code, Download code ...... buttons */}
         <Editor
           height="95%"
           width="100%"
