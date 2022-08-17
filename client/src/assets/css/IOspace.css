@@ -10,6 +10,25 @@
     flex-direction: column;
     justify-content: space-between;
   }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border: solid 0.1px rgb(79,79,79,0.5);
+  border-radius: 50px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 50px;
+}
+
+
   .heading{
     user-select: none;
     background-color: rgb(39,39,39);
@@ -25,9 +44,12 @@
     border: none;
     resize: none;
     color: white;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
   .space > textarea:focus{
     outline: none;
   }
+
+
   

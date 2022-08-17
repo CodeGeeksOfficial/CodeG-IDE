@@ -3,15 +3,19 @@ const { randomBytes } = require("crypto"); // For Generating random bytes
 const { sendInQueue } = require("./rabbitmq-server.js"); // Import function to push in queue
 const { setKey, getKey, delKey } = require("./redis-server.js");
 const cors = require("cors");
+const path = require("path");
 
 const LANGUAGES = ["cpp", "java", "py", "js"];
 
 // *** Express App Configuration *** //
 const app = express();
-const PORT = 6500;
+const PORT = 80;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+
+// app.use(express.static(path.join(__dirname, "../client", "build")));
+app.use(express.static(path.join(__dirname, "build")));
 
 // *** Run endpoint for running the code *** //
 app.post("/run", async (req, res) => {

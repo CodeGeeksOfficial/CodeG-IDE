@@ -1,17 +1,16 @@
-import './App.css';
-import Sidebar from 'components/Sidebar';
-import CodeSpace from 'components/CodeSpace'
-import Header from 'components/Header';
+import "./App.css";
+import Sidebar from "components/Sidebar";
+import CodeSpace from "components/CodeSpace";
+import Header from "components/Header";
 
 function App() {
-  
   return (
     <div className="App">
+      <Header />
       <div className="Space">
-        <Sidebar/>
-        <CodeSpace/>
+        <Sidebar />
+        <CodeSpace />
       </div>
-      <Header/>
     </div>
   );
 }

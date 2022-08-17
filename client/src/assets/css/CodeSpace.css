@@ -37,7 +37,7 @@
   position: absolute;
   bottom: 3%;
   right: 4%;
-  cursor:no-drop;
+  /* cursor:no-drop; */
   transition: fill 0.2s ease-in-out;
 }
   
