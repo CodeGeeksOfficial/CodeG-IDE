@@ -1,4 +1,3 @@
-### Please visit the deployed project [here](http://146.190.236.16:3000/)
 
 # CodeG-IDE
 
